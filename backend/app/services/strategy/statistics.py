@@ -132,3 +132,61 @@ async def record_closed_trade_stat(
     else:
         stat.loss_count += 1
     stat.last_closed_at = closed_at
+
+
+async def import_walk_forward_buckets(session, *, export_payload: dict) -> None:
+    """
+    Stateless import boundary receiving the validated Walk-Forward bucket stats.
+    Replaces historical hit-rate buckets for live scanner calibration.
+    Leaves live auto-mode trading code entirely unmodified.
+    """
+    from datetime import datetime, timezone
+    from app.schemas.validation import BucketExportArtifact
+
+    # Validate structure and boundary constraints
+    artifact = BucketExportArtifact.model_validate(export_payload)
+
+    for bucket_stat in artifact.buckets:
+        # Use the canonical helper to derive the bucket key — this is the only
+        # correct construction path and matches the live scanner exactly.
+        canonical = build_candidate_stats_bucket(
+            setup_family=bucket_stat.setup_family,
+            direction=bucket_stat.direction,
+            market_state=bucket_stat.market_state,
+            execution_tier=bucket_stat.execution_tier,
+            final_score=_score_for_band(bucket_stat.score_band),
+            atr_percentile=_percentile_for_band(bucket_stat.volatility_band),
+        )
+
+        stat = await session.get(AqrrTradeStat, canonical.bucket_key)
+        if stat is None:
+            stat = AqrrTradeStat(
+                bucket_key=canonical.bucket_key,
+                setup_family=canonical.setup_family,
+                direction=canonical.direction,
+                market_state=canonical.market_state,
+                score_band=canonical.score_band,
+                volatility_band=canonical.volatility_band,
+                execution_tier=canonical.execution_tier,
+                closed_trade_count=0,
+                win_count=0,
+                loss_count=0,
+            )
+            session.add(stat)
+
+        # Walk-forward stats completely override local historical state where applicable
+        stat.closed_trade_count = bucket_stat.closed_trade_count
+        stat.win_count = bucket_stat.win_count
+        stat.loss_count = bucket_stat.loss_count
+        stat.last_closed_at = datetime.now(timezone.utc)
+
+
+def _score_for_band(band: str) -> int:
+    """Return a representative score for a score_band string (for canonical key derivation)."""
+    return {"90_plus": 90, "80_89": 80, "70_79": 70}.get(band, 60)
+
+
+def _percentile_for_band(band: str) -> float | None:
+    """Return a representative ATR percentile for a volatility_band string."""
+    return {"compressed": 0.20, "normal": 0.50, "expanded": 0.80, "extreme": 0.99}.get(band)
+

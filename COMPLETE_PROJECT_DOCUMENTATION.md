@@ -802,7 +802,8 @@ Score thresholds:
 `select_candidates(ranked, slot_budget)` picks the top N, limited by:
 - Available entry slots (≤ 3 simultaneous)
 - Active symbols already traded (no duplicate symbol entries)
-- Correlation conflict check (prevents three highly correlated altcoin longs, for example)
+- Correlation conflict check (dynamically evaluates the rolling 72-hour Pearson correlation against existing candidate returns, discarding setups that breach `correlation_reject_threshold`)
+- Thematic cluster limits (strictly limits concurrency of explicitly categorized beta clusters to `max_cluster_exposure`)
 
 ### 9.7 Historical Bucket Calibration
 
@@ -1290,7 +1291,6 @@ Returns:
 - **Backtest / walk-forward** — `backend/scripts/aqrr_validation.py` is a scaffold stub only; no historical dataset handling is implemented.
 - **No mobile / remote access** — the frontend only works on `localhost`.
 - **Partial TP** — the `_partial_tp_requested()` method always returns `False` (stub). The database columns and split-quantity logic exist but the feature is disabled.
-- **Correlation filter** — the spec describes a rolling correlation filter; the implementation uses lighter-weight thematic / beta clustering checks.
 
 ---
 

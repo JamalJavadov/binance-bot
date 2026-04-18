@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Ensure Homebrew-installed tools are on PATH when invoked directly.
+for _brew_prefix in /opt/homebrew/bin /usr/local/bin; do
+  [[ -d "$_brew_prefix" && ":$PATH:" != *":$_brew_prefix:"* ]] && PATH="$_brew_prefix:$PATH"
+done
+export PATH
+unset _brew_prefix
+
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ENV_FILE="$ROOT_DIR/.env"
 RUN_DIR="$ROOT_DIR/.run"

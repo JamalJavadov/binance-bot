@@ -1,0 +1,13 @@
+{
+  "symbols": ["ADAUSDT"],
+  "intervals": ["15m", "1h", "4h"],
+  "periods": [
+    {
+      "train_start": 1763856000000,
+      "train_end":   1769126400000,
+      "test_start":  1769126400000,
+      "test_end":    1772582400000
+    }
+  ],
+  "min_bucket_samples": 1
+}

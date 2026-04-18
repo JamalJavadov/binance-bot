@@ -1,0 +1,88 @@
+{
+  "generated_at": 1776451382397,
+  "walk_forward_range_start": 1763490709663,
+  "walk_forward_range_end": 1776450709663,
+  "data_points": 12,
+  "buckets": [
+    {
+      "setup_family": "breakout_retest",
+      "direction": "SHORT",
+      "market_state": "BEAR_TREND",
+      "score_band": "90_plus",
+      "volatility_band": "extreme",
+      "execution_tier": "tier_a",
+      "closed_trade_count": 1,
+      "win_count": 0,
+      "loss_count": 1,
+      "breakeven_count": 0,
+      "gross_profit": 0.0,
+      "gross_loss": 1.0,
+      "candidate_count": 4
+    },
+    {
+      "setup_family": "breakout_retest",
+      "direction": "LONG",
+      "market_state": "BULL_TREND",
+      "score_band": "90_plus",
+      "volatility_band": "normal",
+      "execution_tier": "tier_a",
+      "closed_trade_count": 1,
+      "win_count": 0,
+      "loss_count": 1,
+      "breakeven_count": 0,
+      "gross_profit": 0.0,
+      "gross_loss": 1.0,
+      "candidate_count": 1
+    },
+    {
+      "setup_family": "breakout_retest",
+      "direction": "SHORT",
+      "market_state": "BEAR_TREND",
+      "score_band": "90_plus",
+      "volatility_band": "expanded",
+      "execution_tier": "tier_a",
+      "closed_trade_count": 1,
+      "win_count": 1,
+      "loss_count": 0,
+      "breakeven_count": 0,
+      "gross_profit": 3.0,
+      "gross_loss": 0.0,
+      "candidate_count": 3
+    },
+    {
+      "setup_family": "breakout_retest",
+      "direction": "LONG",
+      "market_state": "BULL_TREND",
+      "score_band": "90_plus",
+      "volatility_band": "expanded",
+      "execution_tier": "tier_a",
+      "closed_trade_count": 1,
+      "win_count": 0,
+      "loss_count": 1,
+      "breakeven_count": 0,
+      "gross_profit": 0.0,
+      "gross_loss": 1.0,
+      "candidate_count": 1
+    },
+    {
+      "setup_family": "breakout_retest",
+      "direction": "SHORT",
+      "market_state": "BEAR_TREND",
+      "score_band": "90_plus",
+      "volatility_band": "compressed",
+      "execution_tier": "tier_a",
+      "closed_trade_count": 1,
+      "win_count": 0,
+      "loss_count": 1,
+      "breakeven_count": 0,
+      "gross_profit": 0.0,
+      "gross_loss": 1.0,
+      "candidate_count": 3
+    }
+  ],
+  "phase_notes": [
+    "Phase 4: Simulated execution outcomes aggregated offline.",
+    "gross_profit and gross_loss reflect normalized R-multiples, not USDT.",
+    "Higher timeframe candles derived from 15m aggregation."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "symbols": ["BTCUSDT"],
+  "intervals": ["15m", "1h", "4h"],
+  "periods": [
+    {
+      "train_start": 1706745600000,
+      "train_end":   1711929600000,
+      "test_start":  1711929600000,
+      "test_end":    1717545600000
+    }
+  ],
+  "min_bucket_samples": 1
+}

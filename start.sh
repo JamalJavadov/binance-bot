@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Ensure Homebrew-installed tools (node, npm) are on PATH when the script is
+# invoked directly (e.g. ./start.sh) from a non-interactive shell that does
+# not source ~/.zprofile.  Safe to prepend unconditionally; no-op if the
+# directory does not exist on this machine.
+for _brew_prefix in /opt/homebrew/bin /usr/local/bin; do
+  [[ -d "$_brew_prefix" && ":$PATH:" != *":$_brew_prefix:"* ]] && PATH="$_brew_prefix:$PATH"
+done
+export PATH
+unset _brew_prefix
+
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ENV_FILE="$ROOT_DIR/.env"
 RUN_DIR="$ROOT_DIR/.run"

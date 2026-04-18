@@ -1,0 +1,14 @@
+[
+  {
+    "period_index": 0,
+    "train_start": 1706745600000,
+    "train_end": 1711929600000,
+    "test_start": 1711929600000,
+    "test_end": 1717545600000,
+    "symbol": "BTCUSDT",
+    "total_steps": 1560,
+    "steps_skipped": 0,
+    "steps_with_candidates": 0,
+    "candidates": []
+  }
+]

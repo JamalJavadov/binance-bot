@@ -1,0 +1,12 @@
+{
+  "generated_at": 1776452752784,
+  "walk_forward_range_start": 1769126400000,
+  "walk_forward_range_end": 1772582400000,
+  "data_points": 0,
+  "buckets": [],
+  "phase_notes": [
+    "Phase 4: Simulated execution outcomes aggregated offline.",
+    "gross_profit and gross_loss reflect normalized R-multiples, not USDT.",
+    "Higher timeframe candles derived from 15m aggregation."
+  ]
+}

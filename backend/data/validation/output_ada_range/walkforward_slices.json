@@ -1,0 +1,14 @@
+[
+  {
+    "period_index": 0,
+    "train_start": 1763856000000,
+    "train_end": 1769126400000,
+    "test_start": 1769126400000,
+    "test_end": 1772582400000,
+    "symbol": "ADAUSDT",
+    "total_steps": 960,
+    "steps_skipped": 0,
+    "steps_with_candidates": 0,
+    "candidates": []
+  }
+]
